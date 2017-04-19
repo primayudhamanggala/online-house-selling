@@ -19,8 +19,11 @@
       <el-form-item label="Price">
         <el-input v-model="house.price"></el-input>
       </el-form-item>
-      <el-form-item label="Map Location">
-        <el-input v-model="house.mapLocation"></el-input>
+      <el-form-item label="Map Latitude">
+        <el-input v-model="house.lat"></el-input>
+      </el-form-item>
+      <el-form-item label="Map Longitude">
+        <el-input v-model="house.lng"></el-input>
       </el-form-item>
       <el-button type="primary" @click="add(house)">Submit</el-button>
     </el-form>

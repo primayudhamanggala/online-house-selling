@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <el-row v-for="(house, index) in $store.state.houses" key="index">
-      <el-col :span="8">
+      <el-col :span="10">
         <el-card :body-style="{ padding: '0px' }">
           <button class="close" @click="remove(house._id)"><span>&times;</span></button>
           <img :src="house.image" class="image">
@@ -20,17 +20,19 @@
             </el-row>
               <span>Price : Rp. {{house.price}}</span>
             <el-row>
-              <span >Map :{{house.mapLocation}}</span>
-              <button @click="test">button</button>
+              <span >lat :{{house.lat}}</span>
+            </el-row>
+            <el-row>
+              <span >lng :{{house.lng}}</span>
             </el-row>
             <el-row>
               <gmap-map
-              :center="house.mapLocation"
+              :center="{lat:house.lat, lng:house.lng}"
               :zoom="7"
               style="width: 500px; height: 300px"
               >
               <gmap-marker
-                :position="{lat:10, lng:10}"
+                :position="{lat:house.lat, lng:house.lng}"
                 :clickable="true"
                 :draggable="true"
               ></gmap-marker>
@@ -52,14 +54,21 @@
         <el-form-item label="Contact">
           <el-input v-model="house.contact" auto-complete="off"></el-input>
         </el-form-item>
+        </el-form-item>
+        <el-form-item label="Image">
+          <el-input v-model="house.image" auto-complete="off"></el-input>
+        </el-form-item>
         <el-form-item label="Description">
           <el-input v-model="house.description" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="Price">
           <el-input v-model="house.price" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="Map">
-          <el-input v-model="house.mapLocation" auto-complete="off"></el-input>
+        <el-form-item label="Latitude">
+          <el-input v-model="house.lat" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="Longitude">
+          <el-input v-model="house.lng" auto-complete="off"></el-input>
         </el-form-item>
         <el-button @click="updateFormVisible = false">Cancel</el-button>
         <el-button type="primary" @click="updateFormVisible = false; update(house)">Confirm</el-button>
@@ -75,6 +84,7 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
+      src: '',
       center : {},
       markers: {
         position: ''
@@ -111,3 +121,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .image {
+   width: 50%;
+   display: block;
+  }
+</style>
