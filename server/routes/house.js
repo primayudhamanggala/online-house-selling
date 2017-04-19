@@ -7,8 +7,6 @@ router.post('/', houseController.create)
 
 router.get('/', houseController.getAll)
 
-router.get('/:id', houseController.getOne)
-
 router.put('/:id', houseController.update)
 
 router.delete('/:id', houseController.delete)

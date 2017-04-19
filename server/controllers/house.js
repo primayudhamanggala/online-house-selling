@@ -19,15 +19,6 @@ module.exports = {
       }
     })
   },
-  getOne: (req, res) => {
-    db.findById(req.params.id, (err, house) => {
-      if (err) {
-        res.send(err.message)
-      } else {
-        res.send(house)
-      }
-    })
-  },
   update: (req, res) => {
     db.findByIdAndUpdate(req.params.id, req.body, (err, house) => {
       if (err) {
